@@ -1,0 +1,239 @@
+INFORME PRACTICA 2 ALGORITMOS
+-----------------------------
+
+******NOMBRES********
+--------------------
+
+Matías Alberto González Aliendre
+Pablo Jesús Herrero Díaz
+Tiago Da Costa Teixeira Veloso e Volta
+
+
+ORDENACION POR INSERCION Y ORDENACION RAPIDA
+--------------------------------------------
+
+****INTRODUCCION*****
+--------------------
+
+En esta práctica de algoritmos, se implementan y comparan dos algoritmos de ordenación:
+la ordenación por inserción y la ordenación rápida con selección aleatoria del pivote.
+El objetivo es analizar su eficencia al ordenar vectores de números enteros en tres casos
+diferentes: un vector ordenado ascendentemente, un vector ordenado descendentemente y un
+vector desordenado aleatoriamente.
+Para cada caso, se miden y comparan los tiempos de ejecución de ambos algoritmos, permitiendo
+así evaluar su eficiencia con diferentes conjuntos de datos.
+
+****MAQUINA*******
+------------------
+
+Procesador: 11th Gen Intel(R) Core(TM) i9-11900H @ 2.50GHz
+Memoria: 16,0 GB
+Modelo del Sistema: ASUSTeK COMPUTER INC. Vivobook_ASUSLaptop K6502HC_K6502HC
+Arquitectura: x86_64
+Sistema Operativo: Ubuntu 24.04.1 LTS
+Kernel: Linux 6.8.0-45-generic
+Capacidad Disco: 512 GB
+
+UNIDADES DE TIEMPO UTILIZADAS
+-----------------------------
+
+En este informe todos los tiempos de ejecución de los algoritmos se midieron en microsegundos (μs).
+Para garantizar la precisión de las mediciones, se estableció un umbral de confianza de
+500 microsegundos. Si el tiempo de ejecución es menor a este valor el algoritmo se repite
+k veces (k= 1000) y se obtiene el promedio dividiendo el tiempo total entre las ejecuciones.
+Los casos donde se aplicó este procedimiento están marcados con un asterisco en las tablas.
+
+
+***** Test de Ordenación por inserción*****
+-------------------------------------------
+Ordenacion por inserción con inicialización aleatoria
+-15, -8, 5, -10, -5, -1, -5, -1, 4, -3, 2, 17, 17, 14, -7, -13, -4
+ordenado? 0
+ordenando...
+-15, -13, -10, -8, -7, -5, -5, -4, -3, -1, -1, 2, 4, 5, 14, 17, 17
+ordenado? 1
+
+Ordenacion por inserción con inicialización descendente
+17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1
+ordenado? 0
+ordenando...
+1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17
+ordenado? 1
+
+Ordenacion por inserción con inicialización ascendente
+0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16
+ordenado? 1
+ordenando...
+0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16
+ordenado? 1
+
+
+  ***** Test por Ordenación rápida *****
+  --------------------------------------
+
+Ordenacion rapida auxiliar con inicialización aleatoria
+-2, -11, -3, -11, 15, -9, -12, -8, 1, 8, 2, -3, -16, 16, -5, -11, 2
+ordenado? 0
+ordenando...
+-16, -12, -11, -11, -11, -9, -8, -5, -3, -3, -2, 1, 2, 2, 8, 15, 16
+ordenado? 1
+
+Ordenacion rapida auxiliar con inicialización descendente
+17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1
+ordenado? 0
+ordenando...
+1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17
+ordenado? 1
+
+Ordenacion rapida auxiliar con inicialización ascendente
+0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16
+ordenado? 1
+ordenando...
+0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16
+ordenado? 1
+
+
+******TABLAS******
+------------------
+
+Ordenación por inserción con inicialización ascendente
+
+            n            t(n)            t(n)/n^0.78             t(n)/n^0.98              t(n)/n^1.18
+*         500           1.1920            0.009356                0.0026995                0.0007789
+*        1000           2.4040            0.010988                0.0027602                0.0006933
+*        2000           4.7200            0.012564                0.0027475                0.0006008
+*        4000           9.2580            0.014352                0.0027321                0.0005201
+*        8000          18.2620            0.016487                0.0027322                0.0004528
+*       16000          35.4190            0.018622                0.0026866                0.0003876
+*       32000          69.6250            0.021318                0.0026774                0.0003363
+
+n^0.78 es la cota subestimada
+n^0.98 es la cota ajustada y la Cte = 0.0027
+n^1.18 es la cota sobreestimada
+
+Ordenación por inserción con inicialización descendente
+
+            n            t(n)            t(n)/n^1.8              t(n)/n^2.0               t(n)/n^2.2
+*         500         229.1240            0.003176                0.0009165                0.0002644
+         1000         905.0000            0.003603                0.0009050                0.0002273
+         2000        3612.0000            0.004129                0.0009030                0.0001975
+         4000       14443.0000            0.004742                0.0009027                0.0001718
+         8000       58024.0000            0.005471                0.0009066                0.0001502
+        16000      235107.0000            0.006366                0.0009184                0.0001325
+        32000      926328.0000            0.007203                0.0009046                0.0001136
+
+n^1.8 es la cota subestimada
+n^2.0 es la cota ajustada y la Cte = 0.00091
+n^2.2 es la cota sobreestimada
+
+Ordenación por inserción con inicialización aleatoria
+
+            n            t(n)            t(n)/n^1.79             t(n)/n^1.99              t(n)/n^2.19
+*         500         118.9970            0.001755                0.0005065                0.0001461
+*        1000         463.6930            0.001978                0.0004969                0.0001248
+         2000        1849.0000            0.002281                0.0004988                0.0001091
+         4000        7306.0000            0.002606                0.0004961                0.0000944
+         8000       28852.0000            0.002976                0.0004932                0.0000817
+        16000      117667.0000            0.003510                0.0005064                0.0000731
+        32000      466197.0000            0.004021                0.0005050                0.0000634
+
+n^1.79 es la cota subestimada
+n^1.99 es la cota ajustada y la Cte = 0.0005
+n^2.19 es la cota sobreestimada
+
+
+Ordenación rápida con inicialización ascendente
+
+            n            t(n)        t(n)/n^0.759*log(n)      t(n)/n^0.959*log(n)       t(n)/n^1.259*log(n)
+*         500          16.7820             0.016739               0.0048300                0.0007486
+*        1000          35.7420             0.018953               0.0047607                0.0005993
+*        2000          76.0230             0.021648               0.0047339                0.0004841
+*        4000         162.6080             0.025075               0.0047734                0.0003965
+*        8000         341.5640             0.028723               0.0047600                0.0003211
+        16000         736.0000             0.033954               0.0048985                0.0002684
+        32000        1517.0000             0.038590               0.0048467                0.0002157
+
+
+n^0.759*log(n) es la cota subestimada
+n^0.959*log(n) es la cota ajustada y la Cte = 0.0048
+n^1.259*log(n) es la cota sobreestimada
+
+Ordenación rápida con inicialización descendente
+
+            n            t(n)        t(n)/n^0.756*log(n)      t(n)/n^0.956*log(n)       t(n)/n^1.256*log(n)
+*         500          17.1210            0.017399                0.0050203                0.0007781
+*        1000          36.4190            0.019716                0.0049524                0.0006235
+*        2000          77.3510            0.022534                0.0049277                0.0005039
+*        4000         164.7070            0.026038                0.0049568                0.0004117
+*        8000         344.8350            0.029790                0.0049369                0.0003331
+        16000         733.0000            0.034812                0.0050223                0.0002752
+        32000        1479.0000            0.038813                0.0048747                0.0002170
+
+
+n^0.756*log(n) es la cota subestimada
+n^0.956*log(n) es la cota ajustada y la Cte = 0.0049
+n^1.256*log(n) es la cota sobreestimada
+
+Ordenación rápida con inicialización aleatoria
+
+            n            t(n)        t(n)/n^0.78*log(n)       t(n)/n^0.98*log(n)        t(n)/n^1.18*log(n)
+*         500          28.2070            0.024693                0.0071249                0.0020558
+*        1000          61.8280            0.028358                0.0071232                0.0017893
+*        2000         135.1670            0.032812                0.0071750                0.0015690
+*        4000         290.2290            0.037600                0.0071578                0.0013626
+         8000         622.0000            0.043309                0.0071773                0.0011894
+        16000        1312.0000            0.049392                0.0071258                0.0010280
+        32000        2791.0000            0.057101                0.0071716                0.0009007
+
+
+n^0.78*log(n) es la cota subestimada
+n^0.98*log(n) es la cota ajustada y la Cte = 0.0071
+n^1.18*log(n) es la cota sobreestimada
+
+
+****CONCLUSIONES****
+--------------------
+
+Basándonos en los datos y los tiempos obtenidos de las pruebas efectuadas, podemos concluir que:
+
+El algoritmo de inserción, es sencillo de implementar y tiene un rendimiento aceptable en vectores pequeños
+o que ya están parcialmente ordenados, pero se degrada rápidamente en rendimiento cuando se enfrenta a vectores
+más grandes o que están totalmente desordenados.
+
+El algoritmo de ordenación rápida, por otro lado, no tiene una implementación tan sencilla, pero mostró una mayor
+eficiencia general y un rendimiento más estable en todas las configuraciones de datos.
+
+Las cotas de ambos algoritmos muestran un comportamiento coherente y esperado en todas sus configuraciones.
+La cota subestimada crece de forma constante, la cota sobrestimada decrece de forma constante, y la cota ajustada
+se mantiene alrededor de una constante durante todas las mediciones.
+
+Además como comprobación también podemos compararlas con las complejidades teóricas de los algoritmos.
+
+- Ordenación por Inserción con inicialización ascendente
+La cota empírica de O(n^0.98) está muy cerca de O(n), lo cual es consistente con el mejor caso teórico del algoritmo de inserción,
+que es exactamente O(n) y se da cuando la lista ya está ordenada.
+En este caso, el algoritmo simplemente recorre la lista sin realizar cambios.
+
+- Ordenación por Inserción con inicialización descendente
+La cota empírica coincide exactamente con el peor caso teórico, O(n^2), que ocurre cuando los datos están en orden inverso.
+Cada nuevo elemento tiene que ser comparado y desplazado, lo que genera un comportamiento cuadrático en tiempo.
+
+- Ordenación por Inserción con inicialización aleatoria
+La cota empírica de O(n^1.99) es también consistente con el peor caso teórico, O(n^2). Esto indica que, aunque la lista está desordenada,
+el rendimiento también se aproxima a la complejidad cuadrática. 
+
+- Ordenación rápida con inicialización ascendente
+La cota empírica de O(n^0.959*log(n)) es inferior a O(n*log(n)). Esto sugiere un rendimiento óptimo debido a su cercanía a la cota teórica.
+Esto, a diferencia de cuando el pivote se elige de manera ineficiente que supondría un rendimiento de O(n^2),
+supone un comportamiento cercano a O(n*log(n)) debido a la obtención del pivote de forma aleatoria.
+
+- Ordenación rápida con inicialización descendente
+El comportamiento es similar al caso ascendente. La cota empírica de O(n^0.956*log(n)) sugiere un rendimiento muy cercano a O(n*log(n)).
+Esto es debido en principal medida a la obtención del pivote de forma aleatoria.
+
+- Ordenación rápida con inicialización aleatoria
+La cota empírica de O(n^0.98*log(n)) está cerca de O(nlogn). Esto indica que como en los demás casos la eficiencia del algoritmo es prácticamente la teórica.
+
+Estas mediciones del algoritmo rápido indican que la implementación del algoritmo rápido es efectiva para prácticamente todas las entradas de datos
+y está funcionando mejor que otras formas de implementar este algoritmo, gracias a la elección aleatoria de pivotes que tiende a ser más eficiente,
+generando particiones más equilibradas y, por tanto, un rendimiento cercano al óptimo esperado de O(n*log(n)). 
