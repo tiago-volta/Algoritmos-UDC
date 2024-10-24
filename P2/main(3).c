@@ -177,7 +177,7 @@ double microsegundos() {
 //Mide el tiempo de ejecución
 double medirTiempo(void (*func)(int*,int),void (*inicialización)(int*,int) , const int n, bool *promedio) {
     double t1, t2, t, tTotal,tInicializacion;
-    int j, k = 1000, v[32000];
+    int j, k = 1000, v[32000];                       //Error: En vez de poner el tamaño máximo que voy a tratar es mejor poner n
 
     inicialización(v,n);
     t1 = microsegundos();
@@ -334,4 +334,3 @@ void imprimirTablas() {
     imprimirEncabezado("rápida", "aleatoria", &cotas,2);
     imprimirTiempos(ord_rap, aleatorio, &cotas,2);
 }
-
