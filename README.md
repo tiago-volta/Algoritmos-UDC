@@ -1,4 +1,6 @@
 ## Algoritmos - UDC 2024/2025
+
+
 #NOTAS:
 P1: 1 / 10
 P2: 9,5 / 10
