@@ -1,0 +1,255 @@
+INFORME PRACTICA 3 ALGORITMOS
+-----------------------------
+
+******NOMBRES********
+--------------------
+
+Matías Alberto González Aliendre
+Pablo Jesús Herrero Díaz
+Tiago Da Costa Teixeira Veloso e Volta
+
+
+Diccionario de datos
+--------------------------------------------
+
+****INTRODUCCION*****
+--------------------
+
+En esta práctica se implementa un programa de consulta de sinónimos usando un archivo de 19,062 entradas (sinonimos.txt). 
+El objetivo es comparar la eficiencia de distintas implementaciones de diccionarios de datos en términos de colisiones y tiempos de búsqueda. 
+Para ello, se usan tres métodos de manejo de colisiones en tablas de dispersión cerradas: exploración lineal, exploración cuadrática y doble dispersión. 
+Además, cada implementación de diccionario de datos se prueba con dos funciones de dispersión diferentes, para medir el número total de colisiones 
+al insertar todos los datos de sinonimos.txt y calcular empíricamente la complejidad computacional de la búsqueda de n elementos.
+
+****MAQUINA*******
+------------------
+
+Procesador: AMD Ryzen™ 7 5000 
+Memoria: 15,0 GB
+Modelo del Sistema: ZenBook UX425UA_UM425UA
+Arquitectura: x86_64
+Sistema Operativo: Ubuntu 24.04.1 LTS
+Kernel: Linux 6.8.0-47-generic
+Capacidad Disco: 512 GB
+
+UNIDADES DE TIEMPO UTILIZADAS
+-----------------------------
+
+En este informe todos los tiempos de ejecución de los algoritmos se midieron en microsegundos (μs).
+Para garantizar la precisión de las mediciones, se estableció un umbral de confianza de
+500 microsegundos. Si el tiempo de ejecución es menor a este valor el algoritmo se repite
+k veces (k= 1000) y se obtiene el promedio dividiendo el tiempo total entre las ejecuciones.
+Los casos donde se aplicó este procedimiento están marcados con un asterisco en las tablas.
+
+
+*****TEST*****
+-------------------------------------------
+***TABLA CERRADA LINEAL
+{
+0- (IVAN )
+1-
+2-
+3-
+4-
+5-
+6- (LUIS )
+7- (ANA )
+8- (JOSE )
+9- (OLGA )
+10- (ROSA )
+}
+Numero total de colisiones al insertar los elementos: 12
+Al buscar: ANA, encuentro: ANA, colisiones: 0
+Al buscar: LUIS, encuentro: LUIS, colisiones: 0
+Al buscar: JOSE, encuentro: JOSE, colisiones: 1
+Al buscar: OLGA, encuentro: OLGA, colisiones: 2
+Al buscar: ROSA, encuentro: ROSA, colisiones: 4
+Al buscar: IVAN, encuentro: IVAN, colisiones: 5
+No encuentro: CARLOS, colisiones: 6
+
+***TABLA CERRADA CUADRATICA
+{
+0- (OLGA )
+1-
+2-
+3-
+4- (IVAN )
+5-
+6- (LUIS )
+7- (ANA )
+8- (JOSE )
+9-
+10- (ROSA )
+}
+Numero total de colisiones al insertar los elementos: 8
+Al buscar: ANA, encuentro: ANA, colisiones: 0
+Al buscar: LUIS, encuentro: LUIS, colisiones: 0
+Al buscar: JOSE, encuentro: JOSE, colisiones: 1
+Al buscar: OLGA, encuentro: OLGA, colisiones: 2
+Al buscar: ROSA, encuentro: ROSA, colisiones: 2
+Al buscar: IVAN, encuentro: IVAN, colisiones: 3
+No encuentro: CARLOS, colisiones: 5
+
+***TABLA CERRADA DOBLE
+{
+0- (IVAN )
+1-
+2- (OLGA )
+3- (ROSA )
+4-
+5-
+6- (LUIS )
+7- (ANA )
+8-
+9-
+10- (JOSE )
+}
+Numero total de colisiones al insertar los elementos: 9
+Al buscar: ANA, encuentro: ANA, colisiones: 0
+Al buscar: LUIS, encuentro: LUIS, colisiones: 0
+Al buscar: JOSE, encuentro: JOSE, colisiones: 1
+Al buscar: OLGA, encuentro: OLGA, colisiones: 2
+Al buscar: ROSA, encuentro: ROSA, colisiones: 2
+Al buscar: IVAN, encuentro: IVAN, colisiones: 4
+No encuentro: CARLOS, colisiones: 5
+
+
+******TABLAS******
+------------------
+
+***Dispersion cerrada lineal con dispersión A
+Insertando 19062 elementos... Numero total de colisiones: 172623183
+Buscando n elementos...
+
+            n            t(n)           t(n)/n^0.81              t(n)/n^1.01            t(n)/n^1.01*log(n)
+          125        8516.0000          170.505559                64.916716                 9.319369
+          250       16468.0000          188.065638                62.333491                 7.825154
+          500       32202.0000          209.757328                60.523375                 6.750483
+         1000       63587.0000          236.248106                59.342841                 5.954658
+         2000      129906.0000          275.292839                60.198950                 5.489708
+         4000      255127.0000          308.381154                58.705100                 4.906080
+         8000      530448.0000          365.712603                60.606880                 4.674371
+        16000     1050605.0000          413.144787                59.604395                 4.267887
+
+n^0.81 es la cota subestimada
+n^1.01 es la cota ajustada y la Cte = 61
+n^1.01*log(n) es la cota sobreestimada
+
+***Dispersion cerrada lineal con dispersión B
+Insertando 19062 elementos... Numero total de colisiones: 16965
+Buscando n elementos...
+
+            n            t(n)            t(n)/n^0.85              t(n)/n^1.05           t(n)/n^1.05*log(n)
+*         125          19.3030            0.318604                 0.121302                 0.017414
+*         250          36.3880            0.333203                 0.110439                 0.013864
+*         500          73.7310            0.374564                 0.108077                 0.012054
+*        1000         147.1790            0.414807                 0.104195                 0.010455
+*        2000         293.2680            0.458553                 0.100273                 0.009144
+         4000         680.0000            0.589872                 0.112291                 0.009384
+         8000        1687.0000            0.811874                 0.134546                 0.010377  //anómalo
+        16000        2453.0000            0.654931                 0.094487                 0.006766
+
+
+n^0.85 es la cota subestimada
+n^1.05 es la cota ajustada y la Cte = 0.11
+n^n^1.05*log(n) es la cota sobreestimada
+
+***Dispersion cerrada cuadrática con dispersión A
+Insertando 19062 elementos... Numero total de colisiones: 2106581
+Buscando n elementos...
+
+            n            t(n)            t(n)/n^0.81              t(n)/n^1.01           t(n)/n^1.01*log(n)
+*         125         161.2310            3.228133                 1.229050                 0.176441
+*         250         325.7720            3.720338                 1.233089                 0.154798
+          500         663.0000            4.318648                 1.246103                 0.138984
+         1000        1305.0000            4.848535                 1.217897                 0.122208
+         2000        2719.0000            5.762022                 1.259995                 0.114902
+         4000        5145.0000            6.218946                 1.183872                 0.098938
+         8000        9970.0000            6.873727                 1.139133                 0.087857
+        16000       20446.0000            8.040280                 1.159971                 0.083058
+
+n^0.81 es la cota subestimada
+n^01.01 es la cota ajustada y la Cte = 1.2
+n^1.01*log(n) es la cota sobreestimada
+
+***Dispersion cerrada cuadrática con dispersión B
+Insertando 19062 elementos... Numero total de colisiones: 13366
+Buscando n elementos...
+
+            n            t(n)            t(n)/n^0.83              t(n)/n^1.03            t(n)/n^1.03*log(n)
+*         125          19.3550            0.351850                 0.133960                 0.019231
+*         250          35.9100            0.367219                 0.121713                 0.015279
+*         500          71.7740            0.412878                 0.119132                 0.013287
+*        1000         143.9800            0.465910                 0.117031                 0.011743
+*        2000         295.5890            0.538063                 0.117660                 0.010730
+         4000         651.0000            0.666609                 0.126899                 0.010605
+         8000        1363.0000            0.785111                 0.130111                 0.010035
+        16000        2788.0000            0.903386                 0.130331                 0.009332
+
+n^0.83*log(n) es la cota subestimada
+n^1.03*log(n) es la cota ajustada y la Cte = 0.125
+n^1.03*log(n) es la cota sobreestimada
+
+***Dispersion cerrada doble con dispersión A
+Insertando 19062 elementos... Numero total de colisiones: 1451531
+Buscando n elementos...
+
+            n            t(n)            t(n)/n^0.81              t(n)/n^1.01           t(n)/n^1.01*log(n)
+*         125         162.3290            3.250117                 1.237420                 0.177643
+*         250         321.2380            3.668559                 1.215927                 0.152644
+          500         699.0000            4.553145                 1.313764                 0.146531
+         1000        1524.0000            5.662197                 1.422280                 0.142716
+         2000        2727.0000            5.778975                 1.263702                 0.115241
+         4000        4966.0000            6.002582                 1.142684                 0.095496
+         8000        9764.0000            6.731702                 1.115596                 0.086042
+        16000       20188.0000            7.938823                 1.145334                 0.082010
+
+n^0.81 es la cota subestimada
+n^01.01 es la cota ajustada y la Cte = 1.25
+n^1.01*log(n) es la cota sobreestimada
+
+***Dispersion cerrada doble con dispersión B
+Insertando 19062 elementos... Numero total de colisiones: 19401
+Buscando n elementos...
+
+            n            t(n)            t(n)/n^0.82              t(n)/n^1.02            t(n)/n^1.02*log(n)
+*         125          18.5370            0.353650                 0.134645                 0.019330
+*         250          37.0260            0.400125                 0.132620                 0.016649
+*         500          74.0400            0.453222                 0.130773                 0.014586
+*        1000         150.8430            0.523028                 0.131379                 0.013183
+*        2000         300.8320            0.590853                 0.129203                 0.011782
+         4000        1079.0000            1.200417                 0.228518                 0.019098  //anómalo
+         8000        1874.0000            1.180962                 0.195712                 0.015095  //anómalo
+        16000        2569.0000            0.917035                 0.132301                 0.009473
+
+
+n^0.82 es la cota subestimada
+n^1.02 es la cota ajustada y la Cte = 0.13
+n^1.02*log(n) es la cota sobreestimada
+
+
+****CONCLUSIONES****
+--------------------
+
+A partir de los datos obtenidos y los tiempos de ejecución medidos, podemos concluir lo siguiente:
+
+Crecimiento de los tiempos de búsqueda: Los tiempos de búsqueda aumentan conforme crece el tamaño de búsquedas (n), lo cual es esperado. 
+Sin embargo, el crecimiento no es completamente lineal, lo que indica que el algoritmo no sigue una complejidad O(n) exacta en todos los casos. 
+Este comportamiento sugiere que existen otros factores que influyen en el rendimiento, como la dispersión de las claves y las colisiones.
+
+Impacto de la dispersión: Las funciones de dispersión tipo B producen menos colisiones y, por lo tanto, tiempos de búsqueda más bajos. 
+En cambio, cuando la dispersión no es óptima (como en el caso de la dispersión A), el número de colisiones aumenta considerablemente, 
+lo que degrada el rendimiento y aumenta los tiempos de busqueda.
+
+Comparación entre diccionarios de datos: La exploración doble y cuadrática tendieron a producir menos colisiones que la exploración lineal, lo que resultó en tiempos de búsqueda más eficientes. 
+Por otro lado, cabe resaltar que estas diferencias entre las distintas implementaciones de diccionarios de datos, son más perceptibles en los tiempos de la dispersión A, 
+ya que al estar menos optimizada que la B, los tiempos y números de colisiones varían más entre los diccionarios ya nombrados. 
+En cambio, en la B no se aprecian tanto las diferencias entre diccionarios ya que la dispersión esta lo suficientemente optimizada.
+
+Conclusión general: El algoritmo se comporta de acuerdo con la teoría, ya que el rendimiento depende en gran medida de la calidad de la función de dispersión utilizada y, en general,
+si se tiene una función de dispersión lo suficientemente optimizada no será necesario tener en cuenta sobre que implementación de diccionario estemos trabajando, 
+ya que se obtendrá un buen rendimiento en la mayoría de ellos.
+
+Anomalias: Durante las pruebas, se observaron algunos resultados anómalos en los tiempos de ejecución, particularmente en las tablas de dispersión cerrada con dispersión B.
+Estos valores atípicos podrían ser producto de factores como la interferencia de otros procesos del sistema durante la ejecución. Sin embargo, tras realizar múltiples
+repeticiones y aplicar un análisis estadístico, se encontró que estos puntos no eran representativos del comportamiento general del algoritmo y fueron excluidos del análisis final.
