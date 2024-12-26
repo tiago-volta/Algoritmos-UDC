@@ -1,0 +1,254 @@
+INFORME PRACTICA 4 ALGORITMOS
+-----------------------------
+
+******NOMBRES********
+--------------------
+
+Matías Alberto González Aliendre
+Pablo Jesús Herrero Díaz
+Tiago Da Costa Teixeira Veloso e Volta
+
+
+*****MONTÍCULOS*****
+--------------------------------------------
+
+****INTRODUCCION****
+--------------------
+
+En esta práctica de algoritmos, se implementa el montículo de mínimos el cual es  una estructura de datos basada en un árbol binario completo donde la clave de cada nodo es menor o igual que la clave de sus hijos, asegurando que el elemento más pequeño se encuentre en la raíz de árbol.
+
+Para operar sobre el montículo de mínimos se implementan y validan distintas operaciones, además también se implementa la ordenación por montículos. Para las operaciones se demuestra empíricamente que añadir n nodos a un montículo vacío es O(nlogn) y que la creación del montículo es O(n), en cuanto a la ordenación por montículos se comparan tres situaciones iniciales distintas para el algoritmo. 
+El objetivo es analizar su eficencia al ordenar vectores de números enteros en tres casos
+diferentes: un vector ordenado ascendentemente, un vector ordenado descendentemente y un
+vector desordenado aleatoriamente.
+Para cada caso, se miden y comparan los tiempos de ejecución de las situaciones, permitiendo
+así evaluar su eficiencia.
+
+****MAQUINA****
+------------------
+
+Procesador: AMD Ryzen™ 7 5000 
+Memoria: 15,0 GB
+Modelo del Sistema: ZenBook UX425UA_UM425UA
+Arquitectura: x86_64
+Sistema Operativo: Ubuntu 24.04.1 LTS
+Kernel: Linux 6.8.0-47-generic
+Capacidad Disco: 512 GB
+
+UNIDADES DE TIEMPO UTILIZADAS
+-----------------------------
+
+En este informe todos los tiempos de ejecución de los algoritmos se midieron en microsegundos (μs).
+Para garantizar la precisión de las mediciones, se estableció un umbral de confianza de
+500 microsegundos. Si el tiempo de ejecución es menor a este valor el algoritmo se repite
+k veces (k= 1000) y se obtiene el promedio dividiendo el tiempo total entre las ejecuciones.
+Los casos donde se aplicó este procedimiento están marcados con un asterisco en las tablas.
+
+
+*****DEMONSTRACION EMPIRICA*****
+--------------------------------
+Inserción de n elementos
+
+            n            t(n)        t(n)/n*log(n)^0.687      t(n)/n*log(n)^0.987       t(n)/n*log(n)^1.387
+*        1000          48.6910            0.010034                0.0050341                0.0020068
+*        2000         102.0680            0.009848                0.0048011                0.0018421
+*        4000         214.7280            0.009756                0.0046334                0.0017168
+*        8000         468.9660            0.010082                0.0046743                0.0016773
+        16000        1030.0000            0.010521                0.0047702                0.0016615
+        32000        2241.0000            0.010914                0.0048470                0.0016422
+        64000        4748.0000            0.011060                0.0048171                0.0015904
+
+n*log(n)^0.687 es la cota subestimada
+n*log(n)^0.987 es la cota ajustada y la Cte = 0.0049
+n*log(n)^1.387 es la cota sobreestimada
+
+Creación de montículo
+
+            n            t(n)            t(n)/n^0.787            t(n)/n^0.987             t(n)/n^1.187
+*        1000           9.6510            0.044114                0.0103412                0.0027834
+*        2000          19.3970            0.051633                0.0104644                0.0024690
+*        4000          39.5970            0.061384                0.0107553                0.0022245
+*        8000          79.2580            0.071554                0.0108389                0.0019652
+*       16000         160.6080            0.084441                0.0110583                0.0017575
+*       32000         317.2400            0.097134                0.0109974                0.0015322
+        64000         629.0000            0.112158                0.0109782                0.0013408
+
+n^0.787 es la cota subestimada
+n^0.987 es la cota ajustada y la Cte = 0.010
+n^1.187 es la cota sobreestimada
+
+******TEST******
+-------------------------------------------
+
+Test de IniMonticulo
+
+Última posición: 0
+Inicializado? 0
+Inicializando...
+Última posición: -1
+Inicializado? 1
+
+Test de crearMonticulo
+
+Crear monticulo con: 
+20 5 15 30 10 
+Creando...
+Contenido del montículo:
+5 10 15 30 20 
+Creado correctamente? 1
+
+Test de InsertarMonticulo
+
+Insertar 10 
+Insertando...
+Contenido del montículo:
+10 
+Insertado correctamente? 1
+
+Insertar 5 
+Insertando...
+Contenido del montículo:
+5 10 
+Insertado correctamente? 1
+
+Insertar 15 
+Insertando...
+Contenido del montículo:
+5 10 15 
+Insertado correctamente? 1
+
+Test de ConsultarMenor
+
+Contenido del montículo:
+5 10 15 30 20 
+Menor elemento: 5
+Menor consultado correctamente? 1
+
+Test de QuitarMenor
+
+Contenido del montículo:
+5 10 15 30 20 
+Quitando menor...
+Contenido del montículo:
+10 20 15 30 
+Menor quitado correctamente? 1
+
+Contenido del montículo:
+10 20 15 30 
+Quitando menor...
+Contenido del montículo:
+15 20 30 
+Menor quitado correctamente? 1
+
+Ordenacion por monticulos con inicializacion aleatoria
+4 -5 -10 1 3 -7 -1 0 9 2 
+Ordenado? 0
+Ordenando...
+-10 -7 -5 -1 0 1 2 3 4 9 
+Ordenado? 1
+
+Ordenacion por monticulos con inicializacion descendente
+10 9 8 7 6 5 4 3 2 1 
+Ordenado? 0
+Ordenando...
+1 2 3 4 5 6 7 8 9 10 
+Ordenado? 1
+
+Ordenacion por monticulos con inicializacion ascendente
+0 1 2 3 4 5 6 7 8 9 
+Ordenado? 1
+Ordenando...
+0 1 2 3 4 5 6 7 8 9 
+Ordenado? 1
+
+
+******TABLAS******
+------------------
+
+Ordenación por montículos con inicialización ascendente
+
+            n            t(n)        t(n)/n*log(n)^0.687      t(n)/n*log(n)^0.987       t(n)/n*log(n)^1.387
+*        1000          78.4980            0.020358                0.0081157                0.0032354         //anomalo
+*        2000         189.0600            0.023177                0.0088930                0.0034122
+*        4000         416.3960            0.024249                0.0089850                0.0033292
+         8000         900.0000            0.025000                0.0089706                0.0032188
+        16000        1922.0000            0.025555                0.0089013                0.0031005
+        32000        4036.0000            0.025764                0.0087293                0.0029576
+        64000        8490.0000            0.026089                0.0086135                0.0028438
+
+
+n*log(n)^0.687 es la cota subestimada
+n*log(n)^0.987 es la cota ajustada y la Cte = 0.00887
+n*log(n)^1.387 es la cota sobreestimada
+
+Ordenación por montículos con inicialización descendente
+
+            n            t(n)        t(n)/n*log(n)^0.687      t(n)/n*log(n)^0.987       t(n)/n*log(n)^1.487
+*        1000          84.5990            0.021940                0.0087465                0.0027706         //anomalo
+*        2000         199.5150            0.024459                0.0093848                0.0028340
+*        4000         439.1050            0.025572                0.0094750                0.0027391
+         8000         930.0000            0.025833                0.0092696                0.0025743
+        16000        1943.0000            0.025834                0.0089986                0.0024079
+        32000        4076.0000            0.026020                0.0088158                0.0022788
+        64000        8605.0000            0.026442                0.0087302                0.0021849
+
+
+
+n*log(n)^0.687 es la cota subestimada
+n*log(n)^0.987 es la cota ajustada y la Cte = 0.00906
+n*log(n)^1.487 es la cota sobreestimada
+
+Ordenación por montículos con inicialización aleatoria
+
+            n            t(n)        t(n)/n*log(n)^0.687      t(n)/n*log(n)^0.987       t(n)/n*log(n)^1.487
+*        1000         108.5930            0.028163                0.0112272                0.0035564
+*        2000         237.9510            0.029171                0.0111928                0.0033800
+         4000         516.0000            0.030050                0.0111343                0.0032188
+         8000        1114.0000            0.030944                0.0111036                0.0030836
+        16000        2416.0000            0.032124                0.0111892                0.0029941
+        32000        5212.0000            0.033271                0.0112728                0.0029139
+        64000       11061.0000            0.033989                0.0112219                0.0028085
+
+
+
+n*log(n)^0.687 es la cota subestimada
+n*log(n)^0.987 es la cota ajustada y la Cte = 0.01119
+n*log(n)^1.487 es la cota sobreestimada
+
+
+
+****CONCLUSIONES****
+--------------------
+
+Basándonos en los datos y los tiempos obtenidos de las pruebas efectuadas, podemos concluir:
+
+Inserción de n elementos: El tiempo de ejecución crece proporcionalmente a O(nlogn), lo cual es esperado, ya que cada inserción implica un reordenamiento parcial del montículo utilizando la operación de "flotar". 
+
+Creación de un montículo: Crear un montículo a partir de un vector desordenado tiene una complejidad O(n), y esto se refleja en los tiempos de ejecución, que crecen de forma lineal con respecto al tamaño del vector.
+
+Calculando la complejidad empirica del algoritmo de ordenacion para tres situaciones distintas (vector ordenado ascendentemente, descendentemente y desordenado), podemos verificar que:
+ 
+ Cuando el vector esta ordenado ascendentemente - El tiempo de ejecución aumenta de manera controlada y parece ajustarse bien a la complejidad de ordenación por montículos. 
+ Podemos ver que estos valores se mantienen bastante constantes a medida que aumentamos el tamaño de la entrada, 
+ esto indica que el algoritmo de ordenación por montículos tiene un rendimiento bastante uniforme.
+ 
+ Cuando el vector esta ordenado descendentemente - De manera similar a la situación anterior, los tiempos de ejecución no muestran un crecimiento anómalo. 
+ Aunque el vector está ordenado en sentido contrario al deseado, el algoritmo de montículos parece ser capaz de manejarlo de forma eficiente, 
+ sin un impacto significativo en los tiempos de ejecución. 
+ 
+ Cuando el vector esta desordenado - En este caso, los tiempos de ejecución aumentan ligeramente, pero en general siguen el mismo patrón que en los casos anteriores. 
+ El algoritmo de ordenación por montículos maneja vectores desordenados de forma eficiente, aunque parece que, en comparación con los otros dos casos, 
+ los tiempos de ejecución son ligeramente mayores.
+ 
+Conclusión general: En general, el algoritmo de ordenación por montículos se comporta de manera eficiente en las tres situaciones evaluadas. 
+Los tiempos de ejecución crecen de manera lineal conforme aumentan los tamaños de los vectores, lo que indica que la complejidad del algoritmo es aproximadamente O(nlog⁡n). 
+
+Comparacion con los algoritmos de las praticas anteriores: Montículos destacan en problemas con acceso continuo al mínimo/máximo o en algoritmos específicos.
+Fibonacci es específico para la generación de la secuencia homónima y no compite directamente con los montículos en generalidad.
+Ordenación por inserción es subóptima frente a montículos y otros algoritmos avanzados para entradas grandes.
+Ordenación rápida es competidor directo en eficiencia, con diferentes ventajas según el caso.
+Algoritmos de dispersión son más rápidos en acceso directo pero carecen de propiedades ordenadas como los montículos.
+ 
+Anomalias: Durante las pruebas, se observaron algunos resultados anómalos en los tiempos de ejecución, particularmente en las tablas de dispersión cerrada con dispersión B.
+Estos valores atípicos podrían ser producto de factores como la interferencia de otros procesos del sistema durante la ejecución. Sin embargo, tras realizar múltiples
+repeticiones y aplicar un análisis estadístico, se encontró que estos puntos no eran representativos del comportamiento general del algoritmo y fueron excluidos del análisis final.
